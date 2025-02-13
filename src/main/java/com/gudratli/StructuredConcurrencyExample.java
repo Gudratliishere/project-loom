@@ -9,6 +9,10 @@ public class StructuredConcurrencyExample {
         doStructuredConcurrencyExample();
     }
 
+    /**
+     * 1. Does not return any result if one of the task throws exception
+     * 2. Does not wait for big task to complete if second task throws exception even big task is before than second task
+     */
     @SuppressWarnings("preview")
     private static void doStructuredConcurrencyExample() {
         try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
@@ -37,14 +41,13 @@ public class StructuredConcurrencyExample {
         }
     }
 
-    //TODO: Test with 5000ms-1000ms
     private static String fetchDataFromAPI() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(5000);
         return "API data";
     }
 
     private static String fetchDataFromDatabase() throws InterruptedException {
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         throw new RuntimeException();
     }
 }
