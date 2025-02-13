@@ -6,7 +6,7 @@ import java.util.concurrent.StructuredTaskScope;
 
 public class StructuredConcurrencyExample {
     public static void main() {
-        doExecutorServiceExample();
+        doStructuredConcurrencyExample();
     }
 
     @SuppressWarnings("preview")
@@ -37,6 +37,7 @@ public class StructuredConcurrencyExample {
         }
     }
 
+    //TODO: Test with 5000ms-1000ms
     private static String fetchDataFromAPI() throws InterruptedException {
         Thread.sleep(2000);
         return "API data";
